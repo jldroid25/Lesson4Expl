@@ -1,0 +1,30 @@
+version: 2.1
+
+#Solution: Re-usable Job Code
+
+commands:
+    print_pipeline_id:
+        steps:
+            - run echo ${CIRCLE_WORKFLOW_ID}
+
+jobs:
+    my_job:
+        docker: 
+            - image: circleci/node:13.8.0
+        steps:
+            - print_pipeline_id
+    
+    #Job to stimulate a Job Failure
+    steps:
+        # return 1 is non-zero so job will fail
+        - run: return 1
+        - run:
+            name: on error
+            command: echo "Hello error"
+            when: on_fail 
+
+workflows:
+    my_workflow:
+        jobs:
+            - my_job
+    
