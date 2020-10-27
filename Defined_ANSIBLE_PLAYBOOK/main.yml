@@ -1,0 +1,8 @@
+---
+# This is our Playbook  CI/CD  pipeline
+
+    - name: Exercise
+    hosts: localhost
+
+    roles:
+        -print

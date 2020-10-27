@@ -1,0 +1,9 @@
+---
+    - name: Print env variable
+    shell: echo $PATH
+    register: Print_result
+
+    - name: print message
+    debug:
+        msg: "{{ Print_result:stdou_lines }}"
+
